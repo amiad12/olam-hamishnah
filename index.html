@@ -8,7 +8,7 @@
     <!-- Google Fonts: Heebo & Frank Ruhl Libre -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&amp;family=Heebo:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -145,10 +145,9 @@
 </head>
 <body class="antialiased selection:bg-gold-500 selection:text-midnight-950">
 
-    <!-- שכבת כוכבים ברקע -->
     <div class="stars-bg"></div>
 
-    <!-- סרגל מצב מנהל עליון (מוסתר כברירת מחדל) -->
+    <!-- סרגל מצב מנהל עליון -->
     <div id="adminBanner" class="hidden sticky top-0 z-40 bg-gradient-to-l from-amber-900/95 via-midnight-900/95 to-amber-900/95 border-b border-gold-400/50 backdrop-blur-md shadow-lg">
         <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
             <div class="flex items-center gap-2.5">
@@ -188,7 +187,6 @@
     <!-- מעטפת ראשית -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16">
         
-        <!-- שורה עליונה: סטטוס סנכרון חי להורים + כפתור כוכב דיסקרטי בפינה -->
         <div class="flex items-center justify-between mb-2">
             <div id="syncStatusPill" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/70 border border-emerald-400/30 text-xs text-emerald-200 shadow-sm">
                 <span id="syncStatusDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -229,7 +227,7 @@
                     </div>
                 </div>
 
-                <!-- מד רמת העולם (World Level & XP) -->
+                <!-- מד רמת העולם -->
                 <div id="worldCard" class="w-full lg:w-7/12 bg-midnight-950/75 border border-gold-400/30 rounded-2xl p-4 sm:p-5 shadow-inner">
                     <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
                         <div class="flex items-center gap-2.5">
@@ -255,7 +253,6 @@
                         <span id="worldPercentDisplay" class="font-semibold text-gold-300">35%</span>
                     </div>
 
-                    <!-- פקדי מנהל עבור עולם המשנה (מוסתרים כברירת מחדל) -->
                     <div id="worldAdminControls" class="hidden mt-4 pt-3.5 border-t border-gold-400/20 flex flex-wrap items-center justify-between gap-3">
                         <div class="flex flex-wrap items-center gap-1.5">
                             <span class="text-xs font-semibold text-gold-300 ml-1">נקודות עולם:</span>
@@ -302,15 +299,15 @@
                 </div>
 
                 <select id="sortSelect" onchange="renderPlayers()" class="px-3.5 py-2.5 rounded-2xl bg-midnight-900/90 border border-white/15 text-xs sm:text-sm text-slate-200 focus:outline-none focus:border-gold-400">
+                    <option value="createdAsc">מיון: סדר הוספה</option>
                     <option value="levelDesc">מיון: רמה (מהגבוה לנמוך)</option>
                     <option value="gemsDesc">מיון: סך יהלומים</option>
                     <option value="nameAsc">מיון: א-ב</option>
-                    <option value="createdAsc">מיון: סדר הוספה</option>
                 </select>
             </div>
         </div>
 
-        <!-- רשת כרטיסי השחקנים (נטענת דינמית מהענן) -->
+        <!-- רשת כרטיסי השחקנים -->
         <main id="playersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></main>
 
         <!-- מצב ריק כשאין שחקנים -->
@@ -360,7 +357,7 @@
                 <button onclick="closeModal('playerModal')" class="text-slate-400 hover:text-white p-1">✕</button>
             </div>
             <form onsubmit="savePlayerForm(event)" class="space-y-4">
-                <input type="hidden" id="editPlayerId">
+                <input type="hidden" id="editPlayerIndex">
                 <div>
                     <label class="block text-xs font-semibold text-slate-300 mb-1">שם השחקן / התלמיד *</label>
                     <input type="text" id="playerNameInput" placeholder="לדוגמה: יונתן כהן" class="w-full px-4 py-2.5 rounded-xl bg-midnight-950 border border-white/20 text-white focus:outline-none focus:border-gold-400" required="">
@@ -444,7 +441,7 @@
         </div>
     </div>
 
-    <!-- 4. מודאל הגדרות מנהל (שינוי סיסמה / איפוס נתוני הדגמה) -->
+    <!-- 4. מודאל הגדרות מנהל -->
     <div id="settingsModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="glass-panel rounded-3xl max-w-md w-full p-6 border border-gold-400/40 shadow-2xl">
             <div class="flex items-center justify-between mb-4">
@@ -473,7 +470,7 @@
         </div>
     </div>
 
-    <!-- 5. מודאל חיבור לענן (מוסתר כברירת מחדל) -->
+    <!-- 5. מודאל חיבור לענן -->
     <div id="cloudModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
         <div class="glass-panel rounded-3xl max-w-xl w-full p-6 border border-indigo-400/40 shadow-2xl my-8">
             <div class="flex items-center justify-between mb-3">
@@ -570,19 +567,26 @@
             worldLevel: 1,
             worldXP: 350,
             players: [
-                { id: 'p1', name: 'יונתן כהן', level: 3, xp: 140, blueGems: 12, purpleGems: 2 },
-                { id: 'p2', name: 'אריאל לוי', level: 2, xp: 180, blueGems: 9, purpleGems: 1 },
-                { id: 'p3', name: 'נועם אברהמי', level: 4, xp: 60, blueGems: 18, purpleGems: 4 },
-                { id: 'p4', name: 'דוד מזרחי', level: 1, xp: 75, blueGems: 5, purpleGems: 0 }
+                { id: 'p_init_1', name: 'יונתן כהן', level: 3, xp: 140, blueGems: 12, purpleGems: 2 },
+                { id: 'p_init_2', name: 'אריאל לוי', level: 2, xp: 180, blueGems: 9, purpleGems: 1 },
+                { id: 'p_init_3', name: 'נועם אברהמי', level: 4, xp: 60, blueGems: 18, purpleGems: 4 },
+                { id: 'p_init_4', name: 'דוד מזרחי', level: 1, xp: 75, blueGems: 5, purpleGems: 0 }
             ]
         };
 
         let firebaseUrl = resolveFirebaseUrl();
         let appState = loadLocalState();
         let isAdminMode = false;
-        let lastLeveledUpPlayerId = null;
+        let lastLeveledUpPlayerIndex = -1;
         let livePollingTimer = null;
         let lastCloudSnapshot = "";
+
+        function generateUniqueId() {
+            if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+                return 'player_' + crypto.randomUUID();
+            }
+            return 'player_' + Date.now() + '_' + Math.random().toString(36).slice(2, 11) + '_' + Math.floor(Math.random() * 100000);
+        }
 
         function resolveFirebaseUrl() {
             try {
@@ -620,12 +624,31 @@
             return JSON.parse(JSON.stringify(DEFAULT_STATE));
         }
 
+        // מבטיח שכל שחקן הוא אובייקט עצמאי עם מזהה ייחודי משלו (מונע התנגשויות כפולות)
         function normalizeState(raw) {
+            const seenIds = new Set();
+            const rawPlayers = Array.isArray(raw.players) ? raw.players : [];
+            const cleanPlayers = rawPlayers.map((p, idx) => {
+                let uniqueId = p.id || generateUniqueId();
+                if (seenIds.has(uniqueId)) {
+                    uniqueId = generateUniqueId() + '_' + idx;
+                }
+                seenIds.add(uniqueId);
+                return {
+                    id: uniqueId,
+                    name: String(p.name || 'שחקן'),
+                    level: Math.max(1, Number(p.level) || 1),
+                    xp: Math.max(0, Number(p.xp) || 0),
+                    blueGems: Math.max(0, Number(p.blueGems) || 0),
+                    purpleGems: Math.max(0, Number(p.purpleGems) || 0)
+                };
+            });
+
             return {
                 adminPassword: raw.adminPassword || '1234',
                 worldLevel: Math.max(1, Number(raw.worldLevel) || 1),
                 worldXP: Math.max(0, Number(raw.worldXP) || 0),
-                players: Array.isArray(raw.players) ? raw.players : []
+                players: cleanPlayers
             };
         }
 
@@ -786,7 +809,6 @@
             const cleanUrl = sanitizeFirebaseUrl(currentUrl);
             const wasAdmin = isAdminMode;
             
-            // סוגרים זמנית את מצב המנהל ואת המודאל כדי שהקובץ שיורד יהיה נקי לחלוטין להורים
             closeModal('cloudModal');
             if (wasAdmin) {
                 isAdminMode = false;
@@ -933,14 +955,14 @@
             showToast(`רמת העולם עודכנה לרמה ${appState.worldLevel}`, "info");
         }
 
-        /* ==================== לוגיקת שחקנים (XP, רמות, יהלומים) ==================== */
+        /* ==================== לוגיקת שחקנים מבוססת אינדקס ייחודי (מונע כפילויות) ==================== */
 
-        function addPlayerXP(playerId, amount) {
+        function addPlayerXPByIndex(playerIndex, amount) {
             if (!isAdminMode) return;
-            const player = appState.players.find(p => p.id === playerId);
+            const player = appState.players[playerIndex];
             if (!player) return;
 
-            player.xp = Math.max(0, player.xp + amount);
+            player.xp = Math.max(0, Number(player.xp || 0) + amount);
             let leveledUp = false;
 
             while (player.xp >= getPlayerRequiredXP(player.level)) {
@@ -950,7 +972,7 @@
             }
 
             if (leveledUp) {
-                lastLeveledUpPlayerId = player.id;
+                lastLeveledUpPlayerIndex = playerIndex;
                 showToast(`🎉 ${player.name} עלה לרמה ${player.level}!`, "gold");
             }
 
@@ -958,22 +980,22 @@
             renderPlayers();
         }
 
-        function applyCustomPlayerXP(playerId) {
-            const input = document.getElementById(`customXp_${playerId}`);
+        function applyCustomPlayerXPByIndex(playerIndex) {
+            const input = document.getElementById(`customXp_idx_${playerIndex}`);
             if (!input) return;
             const val = parseInt(input.value, 10);
             if (!isNaN(val) && val !== 0) {
-                addPlayerXP(playerId, val);
+                addPlayerXPByIndex(playerIndex, val);
                 input.value = '';
             }
         }
 
-        function changePlayerLevel(playerId, delta) {
+        function changePlayerLevelByIndex(playerIndex, delta) {
             if (!isAdminMode) return;
-            const player = appState.players.find(p => p.id === playerId);
+            const player = appState.players[playerIndex];
             if (!player) return;
 
-            player.level = Math.max(1, player.level + delta);
+            player.level = Math.max(1, Number(player.level || 1) + delta);
             const req = getPlayerRequiredXP(player.level);
             if (player.xp >= req) {
                 player.xp = req - 1;
@@ -982,15 +1004,15 @@
             renderPlayers();
         }
 
-        function changePlayerGems(playerId, gemType, delta) {
+        function changePlayerGemsByIndex(playerIndex, gemType, delta) {
             if (!isAdminMode) return;
-            const player = appState.players.find(p => p.id === playerId);
+            const player = appState.players[playerIndex];
             if (!player) return;
 
             if (gemType === 'blue') {
-                player.blueGems = Math.max(0, (player.blueGems || 0) + delta);
+                player.blueGems = Math.max(0, Number(player.blueGems || 0) + delta);
             } else if (gemType === 'purple') {
-                player.purpleGems = Math.max(0, (player.purpleGems || 0) + delta);
+                player.purpleGems = Math.max(0, Number(player.purpleGems || 0) + delta);
             }
             saveState();
             renderPlayers();
@@ -1001,7 +1023,7 @@
         function openAddPlayerModal() {
             if (!isAdminMode) return;
             document.getElementById('playerModalTitle').textContent = 'הוספת שחקן חדש לעולם';
-            document.getElementById('editPlayerId').value = '';
+            document.getElementById('editPlayerIndex').value = '-1';
             document.getElementById('playerNameInput').value = '';
             document.getElementById('playerLevelInput').value = 1;
             document.getElementById('playerXpInput').value = 0;
@@ -1011,13 +1033,13 @@
             setTimeout(() => document.getElementById('playerNameInput').focus(), 100);
         }
 
-        function openEditPlayerModal(playerId) {
+        function openEditPlayerModalByIndex(playerIndex) {
             if (!isAdminMode) return;
-            const player = appState.players.find(p => p.id === playerId);
+            const player = appState.players[playerIndex];
             if (!player) return;
 
             document.getElementById('playerModalTitle').textContent = `עריכת פרטי שחקן: ${player.name}`;
-            document.getElementById('editPlayerId').value = player.id;
+            document.getElementById('editPlayerIndex').value = String(playerIndex);
             document.getElementById('playerNameInput').value = player.name;
             document.getElementById('playerLevelInput').value = player.level;
             document.getElementById('playerXpInput').value = player.xp;
@@ -1030,7 +1052,7 @@
             e.preventDefault();
             if (!isAdminMode) return;
 
-            const id = document.getElementById('editPlayerId').value;
+            const idx = parseInt(document.getElementById('editPlayerIndex').value, 10);
             const name = document.getElementById('playerNameInput').value.trim();
             let level = Math.max(1, parseInt(document.getElementById('playerLevelInput').value, 10) || 1);
             let xp = Math.max(0, parseInt(document.getElementById('playerXpInput').value, 10) || 0);
@@ -1044,19 +1066,19 @@
                 level += 1;
             }
 
-            if (id) {
-                const player = appState.players.find(p => p.id === id);
-                if (player) {
-                    player.name = name;
-                    player.level = level;
-                    player.xp = xp;
-                    player.blueGems = blueGems;
-                    player.purpleGems = purpleGems;
-                    showToast(`פרטי השחקן "${name}" עודכנו`, "success");
-                }
+            if (idx >= 0 && appState.players[idx]) {
+                appState.players[idx] = {
+                    ...appState.players[idx],
+                    name,
+                    level,
+                    xp,
+                    blueGems,
+                    purpleGems
+                };
+                showToast(`פרטי השחקן "${name}" עודכנו`, "success");
             } else {
                 const newPlayer = {
-                    id: 'p_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+                    id: generateUniqueId(),
                     name,
                     level,
                     xp,
@@ -1072,16 +1094,16 @@
             renderPlayers();
         }
 
-        function requestDeletePlayer(playerId) {
+        function requestDeletePlayerByIndex(playerIndex) {
             if (!isAdminMode) return;
-            const player = appState.players.find(p => p.id === playerId);
+            const player = appState.players[playerIndex];
             if (!player) return;
 
             showConfirm(
                 `מחיקת השחקן "${player.name}"`,
                 "פעולה זו תסיר את השחקן ואת כל ההתקדמות והיהלומים שלו לצמיתות.",
                 () => {
-                    appState.players = appState.players.filter(p => p.id !== playerId);
+                    appState.players.splice(playerIndex, 1);
                     saveState();
                     renderPlayers();
                     showToast(`השחקן "${player.name}" נמחק`, "info");
@@ -1103,23 +1125,26 @@
             document.getElementById('totalBlueGemsCount').textContent = totalBlue;
             document.getElementById('totalPurpleGemsCount').textContent = totalPurple;
 
-            let filtered = appState.players.filter(p => p.name.toLowerCase().includes(searchQuery));
+            // שומרים לכל שחקן את האינדקס המקורי המדויק שלו ב-appState.players
+            let indexedList = appState.players
+                .map((player, originalIndex) => ({ player, originalIndex }))
+                .filter(item => item.player.name.toLowerCase().includes(searchQuery));
 
-            filtered.sort((a, b) => {
+            indexedList.sort((a, b) => {
                 if (sortBy === 'levelDesc') {
-                    if (b.level !== a.level) return b.level - a.level;
-                    return b.xp - a.xp;
+                    if (b.player.level !== a.player.level) return b.player.level - a.player.level;
+                    return b.player.xp - a.player.xp;
                 } else if (sortBy === 'gemsDesc') {
-                    const totalA = (a.blueGems || 0) + (a.purpleGems || 0) * 3;
-                    const totalB = (b.blueGems || 0) + (b.purpleGems || 0) * 3;
+                    const totalA = (a.player.blueGems || 0) + (a.player.purpleGems || 0) * 3;
+                    const totalB = (b.player.blueGems || 0) + (b.player.purpleGems || 0) * 3;
                     return totalB - totalA;
                 } else if (sortBy === 'nameAsc') {
-                    return a.name.localeCompare(b.name, 'he');
+                    return a.player.name.localeCompare(b.player.name, 'he');
                 }
-                return 0;
+                return a.originalIndex - b.originalIndex;
             });
 
-            if (filtered.length === 0) {
+            if (indexedList.length === 0) {
                 grid.innerHTML = '';
                 emptyState.classList.remove('hidden');
                 return;
@@ -1127,11 +1152,11 @@
 
             emptyState.classList.add('hidden');
 
-            grid.innerHTML = filtered.map(player => {
+            grid.innerHTML = indexedList.map(({ player, originalIndex }) => {
                 const reqXP = getPlayerRequiredXP(player.level);
                 const xpPercent = Math.min(100, Math.round((player.xp / reqXP) * 100));
                 const initials = getInitials(player.name);
-                const isJustLeveled = lastLeveledUpPlayerId === player.id;
+                const isJustLeveled = lastLeveledUpPlayerIndex === originalIndex;
 
                 let avatarRing = "from-sky-400 to-blue-600";
                 if (player.level >= 5) avatarRing = "from-gold-300 via-amber-500 to-yellow-700";
@@ -1202,13 +1227,13 @@
                         <div>
                             <div class="text-[11px] font-semibold text-slate-400 mb-1.5">ניהול נקודות ניסיון (XP):</div>
                             <div class="flex flex-wrap items-center gap-1.5">
-                                <button onclick="addPlayerXP('${player.id}', -5)" class="px-2 py-1 rounded-lg bg-rose-950/80 hover:bg-rose-800 border border-rose-500/30 text-rose-200 text-xs font-bold transition">-5</button>
-                                <button onclick="addPlayerXP('${player.id}', 5)" class="px-2.5 py-1 rounded-lg bg-sky-600/30 hover:bg-sky-500/40 border border-sky-400/40 text-sky-200 text-xs font-bold transition">+5</button>
-                                <button onclick="addPlayerXP('${player.id}', 10)" class="px-2.5 py-1 rounded-lg bg-sky-600/30 hover:bg-sky-500/40 border border-sky-400/40 text-sky-200 text-xs font-bold transition">+10</button>
-                                <button onclick="addPlayerXP('${player.id}', 20)" class="px-2.5 py-1 rounded-lg bg-sky-600/30 hover:bg-sky-500/40 border border-sky-400/40 text-sky-200 text-xs font-bold transition">+20</button>
+                                <button onclick="addPlayerXPByIndex(${originalIndex}, -5)" class="px-2 py-1 rounded-lg bg-rose-950/80 hover:bg-rose-800 border border-rose-500/30 text-rose-200 text-xs font-bold transition">-5</button>
+                                <button onclick="addPlayerXPByIndex(${originalIndex}, 5)" class="px-2.5 py-1 rounded-lg bg-sky-600/30 hover:bg-sky-500/40 border border-sky-400/40 text-sky-200 text-xs font-bold transition">+5</button>
+                                <button onclick="addPlayerXPByIndex(${originalIndex}, 10)" class="px-2.5 py-1 rounded-lg bg-sky-600/30 hover:bg-sky-500/40 border border-sky-400/40 text-sky-200 text-xs font-bold transition">+10</button>
+                                <button onclick="addPlayerXPByIndex(${originalIndex}, 20)" class="px-2.5 py-1 rounded-lg bg-sky-600/30 hover:bg-sky-500/40 border border-sky-400/40 text-sky-200 text-xs font-bold transition">+20</button>
                                 <div class="flex items-center gap-1 mr-auto">
-                                    <input type="number" id="customXp_${player.id}" placeholder="כמות" class="w-16 px-2 py-1 text-xs rounded-lg bg-midnight-950 border border-white/15 text-white focus:outline-none focus:border-sky-400">
-                                    <button onclick="applyCustomPlayerXP('${player.id}')" class="px-2 py-1 rounded-lg bg-sky-500 hover:bg-sky-400 text-midnight-950 text-xs font-bold transition">הוסף</button>
+                                    <input type="number" id="customXp_idx_${originalIndex}" placeholder="כמות" class="w-16 px-2 py-1 text-xs rounded-lg bg-midnight-950 border border-white/15 text-white focus:outline-none focus:border-sky-400">
+                                    <button onclick="applyCustomPlayerXPByIndex(${originalIndex})" class="px-2 py-1 rounded-lg bg-sky-500 hover:bg-sky-400 text-midnight-950 text-xs font-bold transition">הוסף</button>
                                 </div>
                             </div>
                         </div>
@@ -1217,33 +1242,33 @@
                             <div class="bg-midnight-950/80 rounded-xl p-1.5 border border-sky-500/20">
                                 <div class="text-[10px] text-sky-300 mb-1">כחול</div>
                                 <div class="flex items-center justify-center gap-1.5">
-                                    <button onclick="changePlayerGems('${player.id}', 'blue', -1)" class="w-6 h-6 rounded-md bg-white/10 hover:bg-white/20 text-white text-xs font-bold">-</button>
-                                    <button onclick="changePlayerGems('${player.id}', 'blue', 1)" class="w-6 h-6 rounded-md bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold">+</button>
+                                    <button onclick="changePlayerGemsByIndex(${originalIndex}, 'blue', -1)" class="w-6 h-6 rounded-md bg-white/10 hover:bg-white/20 text-white text-xs font-bold">-</button>
+                                    <button onclick="changePlayerGemsByIndex(${originalIndex}, 'blue', 1)" class="w-6 h-6 rounded-md bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold">+</button>
                                 </div>
                             </div>
 
                             <div class="bg-midnight-950/80 rounded-xl p-1.5 border border-purple-500/20">
                                 <div class="text-[10px] text-purple-300 mb-1">סגול</div>
                                 <div class="flex items-center justify-center gap-1.5">
-                                    <button onclick="changePlayerGems('${player.id}', 'purple', -1)" class="w-6 h-6 rounded-md bg-white/10 hover:bg-white/20 text-white text-xs font-bold">-</button>
-                                    <button onclick="changePlayerGems('${player.id}', 'purple', 1)" class="w-6 h-6 rounded-md bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold">+</button>
+                                    <button onclick="changePlayerGemsByIndex(${originalIndex}, 'purple', -1)" class="w-6 h-6 rounded-md bg-white/10 hover:bg-white/20 text-white text-xs font-bold">-</button>
+                                    <button onclick="changePlayerGemsByIndex(${originalIndex}, 'purple', 1)" class="w-6 h-6 rounded-md bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold">+</button>
                                 </div>
                             </div>
 
                             <div class="bg-midnight-950/80 rounded-xl p-1.5 border border-gold-400/20">
                                 <div class="text-[10px] text-gold-300 mb-1">רמה</div>
                                 <div class="flex items-center justify-center gap-1.5">
-                                    <button onclick="changePlayerLevel('${player.id}', -1)" class="w-6 h-6 rounded-md bg-white/10 hover:bg-white/20 text-white text-xs font-bold">-</button>
-                                    <button onclick="changePlayerLevel('${player.id}', 1)" class="w-6 h-6 rounded-md bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold">+</button>
+                                    <button onclick="changePlayerLevelByIndex(${originalIndex}, -1)" class="w-6 h-6 rounded-md bg-white/10 hover:bg-white/20 text-white text-xs font-bold">-</button>
+                                    <button onclick="changePlayerLevelByIndex(${originalIndex}, 1)" class="w-6 h-6 rounded-md bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold">+</button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="flex items-center justify-between pt-1">
-                            <button onclick="openEditPlayerModal('${player.id}')" class="text-xs text-slate-300 hover:text-gold-300 flex items-center gap-1 transition">
+                            <button onclick="openEditPlayerModalByIndex(${originalIndex})" class="text-xs text-slate-300 hover:text-gold-300 flex items-center gap-1 transition">
                                 <span>✎ עריכת שם/נתונים</span>
                             </button>
-                            <button onclick="requestDeletePlayer('${player.id}')" class="text-xs text-rose-400 hover:text-rose-300 flex items-center gap-1 transition">
+                            <button onclick="requestDeletePlayerByIndex(${originalIndex})" class="text-xs text-rose-400 hover:text-rose-300 flex items-center gap-1 transition">
                                 <span>🗑 מחיקת שחקן</span>
                             </button>
                         </div>
@@ -1253,7 +1278,7 @@
                 `;
             }).join('');
 
-            lastLeveledUpPlayerId = null;
+            lastLeveledUpPlayerIndex = -1;
         }
 
         /* ==================== ייצוא, גיבוי ושחזור נתונים ==================== */
@@ -1339,12 +1364,7 @@
                 try {
                     const imported = JSON.parse(e.target.result);
                     if (imported && Array.isArray(imported.players)) {
-                        appState = {
-                            adminPassword: imported.adminPassword || appState.adminPassword,
-                            worldLevel: Math.max(1, Number(imported.worldLevel) || 1),
-                            worldXP: Math.max(0, Number(imported.worldXP) || 0),
-                            players: imported.players
-                        };
+                        appState = normalizeState(imported);
                         saveState();
                         renderWorldHeader();
                         renderPlayers();
@@ -1453,14 +1473,13 @@
 
         function escapeHTML(str) {
             return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
+                .replace(/&/g, '&')
+                .replace(/</g, '<')
+                .replace(/>/g, '>')
+                .replace(/"/g, '"')
+                .replace(/'/g, ''');
         }
 
-        // אתחול ראשוני בטעינת הדף - תמיד מתחיל במצב צפייה נקי להורים
         window.addEventListener('DOMContentLoaded', () => {
             isAdminMode = false;
             updateAdminUI();
